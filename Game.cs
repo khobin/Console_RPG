@@ -11,9 +11,13 @@ namespace Console_RPG
     {
         public bool running = true;
 
+        public Scene curScene;
+        public PokedexScene pokedexScene;
+        
         public void Run()
         {
             Init();
+
             while(running)
             {
                 Render();
@@ -23,14 +27,18 @@ namespace Console_RPG
         }
         private void Init()
         {
+            pokedexScene = new PokedexScene(this);
+
+            curScene = pokedexScene;
         }
         private void Render()   // 렌더에서 그리고 업데이트로 값 입력 받거나 상황이 달라짐
         {
             Console.Clear();
+            curScene.Render();
         }
         private void Update()   // 계속 돌면서 값을 받고 그에 따라 그려주는게(Render) 달라지게 함
         {
-
+            curScene.Update();
         }
         
     }
