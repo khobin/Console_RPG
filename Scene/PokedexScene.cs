@@ -25,6 +25,8 @@ namespace Console_RPG
                 sb.AppendLine("=============================Search================================");
                 sb.AppendLine(findPokemon.PrintPokemon());
                 sb.AppendLine("===================================================================");
+
+                findPokemon = null;
             }
             foreach (Pokemon p in pokedex.Values)
             {

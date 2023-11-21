@@ -25,10 +25,10 @@ namespace Console_RPG
             public string PrintStat()
             {
                 StringBuilder sb = new StringBuilder();
-                sb.AppendFormat($"HP : {hp}\t");
-                sb.AppendFormat($"ATK : {attack}\t");
-                sb.AppendFormat($"DEF : {defense} \t");
-                sb.AppendFormat($"SPD : {speed}\t");
+                sb.AppendFormat($"HP : {hp,03}\t");
+                sb.AppendFormat($"ATK : {attack,03}\t");
+                sb.AppendFormat($"DEF : {defense,03} \t");
+                sb.AppendFormat($"SPD : {speed,03}\t");
 
 
                 return sb.ToString();

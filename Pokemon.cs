@@ -32,14 +32,14 @@ namespace Console_RPG
         public string PrintPokemon()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat($"ID : {Id,03}\t");
-            sb.AppendFormat($"Name : {Name}\t");
+            sb.AppendFormat($"ID : {Id,03:X3}\t");
+            sb.AppendFormat($"Name : {Name}  \t");
             sb.AppendFormat($"Type : ");
             foreach (int type in types)
             {
                 sb.AppendFormat("{0} ",(Data.Type)type);
             }
-            sb.AppendLine();
+            sb.AppendLine("\n");
             sb.Append(stat.PrintStat());
 
             return sb.ToString();
