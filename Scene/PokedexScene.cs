@@ -8,12 +8,9 @@ namespace Console_RPG
 {
     public class PokedexScene : Scene
     {
-        List<Pokemon> pokedex;
-        //Dictionary<string, Pokemon> pokedex;
+        Dictionary<string, Pokemon> pokedex;
         public PokedexScene()
         {
-            //pokedex = new Dictionary<string, Pokemon>();
-
             //json 파싱 해서 pokedex에 넣기
             JsonManager.Instance.LoadPokemonData();
             pokedex = JsonManager.Instance.GetAllData();
@@ -22,7 +19,8 @@ namespace Console_RPG
         public override void Render()
         {
             StringBuilder sb = new StringBuilder();
-            foreach(Pokemon p in pokedex)
+            
+            foreach (Pokemon p in pokedex.Values)
             {
                 sb.AppendLine(p.PrintPokemon());
             }
@@ -31,25 +29,46 @@ namespace Console_RPG
             Console.WriteLine(sb.ToString());
         }
 
+        //public override void Update()
+        //{
+        //    string input = Console.ReadLine();
+
+        //    int command;
+        //    if (int.TryParse(input, out command))
+        //    {
+        //        switch (command)
+        //        {
+        //            case 1:
+        //                Console.WriteLine("검색할 포켓몬의 이름을 입력하세요");
+
+        //                break;
+        //            case 2:
+        //                Game.Instance.MainMenu();
+        //                break;
+        //        }
+        //        Thread.Sleep(1000);
+        //    }
+        //}
         public override void Update()
         {
-            string input = Console.ReadLine();
-
             int command;
-            if (int.TryParse(input, out command))
+            Game.Instance.Input(out command);
+            switch (command)
             {
-                switch (command)
-                {
-                    case 1:
-                        Console.WriteLine("검색. . .");
-                        break;
-                    case 2:
-                        Game.Instance.MainMenu();
-                        break;
-                }
-                Thread.Sleep(1000);
+                case 1:
+                    Console.WriteLine("검색할 포켓몬의 이름을 입력하세요.");
+                    string find;
+                    Game.Instance.Input(out find);
+                    Pokemon findPokemon;
+                    pokedex.TryGetValue(find, out findPokemon);
+                    //TODO : 포켓몬 찾는 class 새로 생성해서 전담하기.
+                    break;
+                case 2:
+                    Game.Instance.MainMenu();
+                    break;
             }
-
         }
+
+
     }
 }

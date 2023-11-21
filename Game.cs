@@ -45,16 +45,29 @@ namespace Console_RPG
             pokedexScene = new PokedexScene();
             mainMenuScene = new MainMenuScene();
 
-            curScene = sceneStack.Peek();
+            curScene = mainMenuScene;
         }
         private void Render()   // 렌더에서 그리고 업데이트로 값 입력 받거나 상황이 달라짐
         {
+            Thread.Sleep(1000);
             Console.Clear();
             curScene.Render();
         }
         private void Update()   // 계속 돌면서 값을 받고 그에 따라 그려주는게(Render) 달라지게 함
         {
             curScene.Update();
+        }
+        public bool Input(out int command)
+        {
+            string input = Console.ReadLine();
+            bool result = int.TryParse(input, out command);
+            return result;
+        }
+        public bool Input(out string name)
+        {
+            string? input = Console.ReadLine();
+            name = input;
+            return input != null;
         }
         public void Deck()
         {

@@ -22,23 +22,18 @@ namespace Console_RPG
 
         public override void Update()
         {
-            string? input = Console.ReadLine();
-
             int command;
-            if(int.TryParse(input, out command))
+            
+            Game.Instance.Input(out command);
+            switch (command)
             {
-                switch(command)
-                {
-                    case 1:
-                        Game.Instance.Deck();
-                        break;
-                    case 2:
-                        Game.Instance.GameOver();
-                        break;
-                }
+                case 1:
+                    Game.Instance.Deck();
+                    break;
+                case 2:
+                    Game.Instance.GameOver();
+                    break;
             }
-
-
         }
     }
 }

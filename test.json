@@ -1,0 +1,35 @@
+[
+  {
+    "id": "1",
+    "name": "\"Bulbasaur\"",
+    "type": "3",
+    "stat": {
+      "hp": "100",
+      "attack": "10",
+      "defense": "5",
+      "speed": "5"
+    }
+  },
+  {
+    "id": "2",
+    "name": "\"Ivysaur\"",
+    "type": "3",
+    "stat": {
+      "hp": "150",
+      "attack": "15",
+      "defense": "8",
+      "speed": "6"
+    }
+  },
+  {
+    "id": "3",
+    "name": "\"Venusaur\"",
+    "type": "3",
+    "stat": {
+      "hp": "300",
+      "attack": "25",
+      "defense": "20",
+      "speed": "7"
+    }
+  }
+]
