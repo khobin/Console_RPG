@@ -25,35 +25,35 @@ namespace Console_RPG
             public string PrintStat()
             {
                 StringBuilder sb = new StringBuilder();
+                sb.AppendFormat($"HP : {hp}\t");
+                sb.AppendFormat($"ATK : {attack}\t");
+                sb.AppendFormat($"DEF : {defense} \t");
+                sb.AppendFormat($"SPD : {speed}\t");
 
-                sb.AppendFormat("{0,4}", hp);
-                sb.AppendFormat("{0,4}", attack);
-                sb.AppendFormat("{0,4}", defense);
-                sb.AppendFormat("{0,4}", speed);
 
                 return sb.ToString();
             }
         }
         public enum Type
         {
-            Normal = 0,
-            Fire = 1,
-            Water = 2,
-            Grass = 3,
-            Electric = 4,
-            Ice = 5,
-            Fighting = 6,
-            Poison = 7,
-            Ground = 8,
-            Flying = 9,
-            Psychic = 10,
-            Bug = 11,
-            Rock = 12,
-            Ghost = 13,
-            Dragon = 14,
-            Dark = 15,
-            Steel = 16,
-            Fairy = 17
+            노말 = 0,
+            불꽃 = 1,
+            물 = 2,
+            풀 = 3,
+            전기 = 4,
+            얼음 = 5,
+            격투 = 6,
+            독 = 7,
+            땅 = 8,
+            비행 = 9,
+            에스퍼 = 10,
+            벌레 = 11,
+            바위 = 12,
+            고스트 = 13,
+            드래곤 = 14,
+            악 = 15,
+            강철 = 16,
+            페어리 = 17
         }
 
     }

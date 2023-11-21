@@ -15,8 +15,6 @@ namespace Console_RPG
         private MainMenuScene mainMenuScene;
         private PokedexScene pokedexScene;
 
-        private Stack<Scene> sceneStack = new Stack<Scene>();
-
         private Game() { }
         private static Game instance = null;
         public static Game Instance

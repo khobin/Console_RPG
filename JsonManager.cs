@@ -28,7 +28,7 @@ namespace Console_RPG
 
         public void LoadPokemonData()
         {
-            string json = File.ReadAllText("../../../test.json");
+            string json = File.ReadAllText("../../../docs/test.json");
 
             Pokemon[]? pokemons = JsonConvert.DeserializeObject<Pokemon[]>(json);
 

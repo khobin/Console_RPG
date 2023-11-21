@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Console_RPG.Data;
 
 namespace Console_RPG
 {
@@ -10,15 +11,15 @@ namespace Console_RPG
     {
         public int Id { get; set; }
         public string? Name { get; set; }
-        public int type;//public Data.Type type;
+        public int[] types = new int[2];//public Data.Type type;
         public Data.Stat stat;
         private List<Skill>? skills;
 
-        public Pokemon(int id, string name, int type, Data.Stat stat)
+        public Pokemon(int id, string name, int[] types, Data.Stat stat)
         {
             this.Id = id;
             this.Name = name;
-            this.type = type;
+            this.types = types;
             this.stat = stat;
         }
         public void AddSkill(Skill skill)
@@ -31,13 +32,19 @@ namespace Console_RPG
         public string PrintPokemon()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("{0,-5}", Id);
-            sb.AppendFormat("{0,8}", Name);
-            sb.AppendFormat("{0,5}", type);
-            sb.AppendFormat("{0}", stat.PrintStat());
+            sb.AppendFormat($"ID : {Id,03}\t");
+            sb.AppendFormat($"Name : {Name}\t");
+            sb.AppendFormat($"Type : ");
+            foreach (int type in types)
+            {
+                sb.AppendFormat("{0} ",(Data.Type)type);
+            }
+            sb.AppendLine();
+            sb.Append(stat.PrintStat());
 
             return sb.ToString();
         }
+
 
     }
 }
