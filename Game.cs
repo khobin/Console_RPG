@@ -11,9 +11,12 @@ namespace Console_RPG
     {
         public bool running = true;
 
-        public Scene curScene;
-        public PokedexScene pokedexScene;
-        
+        private Scene curScene;
+        private MainMenuScene mainMenuScene;
+        private PokedexScene pokedexScene;
+
+        private Stack<Scene> sceneStack = new Stack<Scene>();
+
         public void Run()
         {
             Init();
@@ -27,9 +30,11 @@ namespace Console_RPG
         }
         private void Init()
         {
-            pokedexScene = new PokedexScene(this);
 
-            curScene = pokedexScene;
+            pokedexScene = new PokedexScene(this);
+            mainMenuScene = new MainMenuScene(this);
+
+            curScene = sceneStack.Peek();
         }
         private void Render()   // 렌더에서 그리고 업데이트로 값 입력 받거나 상황이 달라짐
         {
@@ -40,6 +45,18 @@ namespace Console_RPG
         {
             curScene.Update();
         }
-        
+        public void Deck()
+        {
+            curScene = pokedexScene;
+        }
+        public void GameOver()
+        {
+            running = false;
+        }
+        public void MainMenu()
+        {
+            curScene = mainMenuScene;
+        }
+        }
     }
 }

@@ -14,6 +14,25 @@ namespace Console_RPG
             public int attack;
             public int defense;
             public int speed;
+
+            public Stat(int hp, int attack, int defense, int speed)
+            {
+                this.hp = hp;
+                this.attack = attack;
+                this.defense = defense;
+                this.speed = speed;
+            }
+            public string PrintStat()
+            {
+                StringBuilder sb = new StringBuilder();
+
+                sb.AppendFormat("{0,4}", hp);
+                sb.AppendFormat("{0,4}", attack);
+                sb.AppendFormat("{0,4}", defense);
+                sb.AppendFormat("{0,4}", speed);
+
+                return sb.ToString();
+            }
         }
         public enum Type
         {
