@@ -8,9 +8,7 @@ namespace Console_RPG
 {
     public class MainMenuScene : Scene
     {
-        public MainMenuScene(Game game) : base(game)
-        {
-        }
+        public MainMenuScene() { }
 
         public override void Render()
         {
@@ -32,10 +30,10 @@ namespace Console_RPG
                 switch(command)
                 {
                     case 1:
-                        game.Deck();
+                        Game.Instance.Deck();
                         break;
                     case 2:
-                        game.GameOver();
+                        Game.Instance.GameOver();
                         break;
                 }
             }

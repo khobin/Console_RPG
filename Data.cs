@@ -55,5 +55,6 @@ namespace Console_RPG
             Steel = 16,
             Fairy = 17
         }
+
     }
 }

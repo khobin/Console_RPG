@@ -11,12 +11,21 @@ namespace Console_RPG
 {
     public class JsonManager
     {
-        public static readonly JsonManager instance = new JsonManager();
+
+        private JsonManager() { }
+        private static JsonManager instance = null;
+        public static JsonManager Instance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new JsonManager();
+                return instance;
+            }
+        }
 
         //private Dictionary<string, Pokemon> pokemon_dic = new Dictionary<string, Pokemon>();
         private List<Pokemon> pokemon_list = new List<Pokemon>(100);
-
-        private JsonManager() { }
 
         public void LoadPokemonData()
         {

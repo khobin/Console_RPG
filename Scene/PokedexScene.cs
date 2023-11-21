@@ -10,14 +10,13 @@ namespace Console_RPG
     {
         List<Pokemon> pokedex;
         //Dictionary<string, Pokemon> pokedex;
-        public PokedexScene(Game game) : base(game)
+        public PokedexScene()
         {
-            
             //pokedex = new Dictionary<string, Pokemon>();
 
             //json 파싱 해서 pokedex에 넣기
-            JsonManager.instance.LoadPokemonData();
-            pokedex = JsonManager.instance.GetAllData();
+            JsonManager.Instance.LoadPokemonData();
+            pokedex = JsonManager.Instance.GetAllData();
         }
 
         public override void Render()
@@ -45,7 +44,7 @@ namespace Console_RPG
                         Console.WriteLine("검색. . .");
                         break;
                     case 2:
-                        game.MainMenu();
+                        Game.Instance.MainMenu();
                         break;
                 }
                 Thread.Sleep(1000);

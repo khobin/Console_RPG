@@ -17,6 +17,17 @@ namespace Console_RPG
 
         private Stack<Scene> sceneStack = new Stack<Scene>();
 
+        private Game() { }
+        private static Game instance = null;
+        public static Game Instance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new Game();
+                return instance;
+            }
+        }
         public void Run()
         {
             Init();
@@ -31,8 +42,8 @@ namespace Console_RPG
         private void Init()
         {
 
-            pokedexScene = new PokedexScene(this);
-            mainMenuScene = new MainMenuScene(this);
+            pokedexScene = new PokedexScene();
+            mainMenuScene = new MainMenuScene();
 
             curScene = sceneStack.Peek();
         }
@@ -57,6 +68,6 @@ namespace Console_RPG
         {
             curScene = mainMenuScene;
         }
-        }
+        
     }
 }
