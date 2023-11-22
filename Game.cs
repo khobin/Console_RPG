@@ -30,15 +30,17 @@ namespace Console_RPG
         {
             Init();
 
-            while(running)
+            while (running)
             {
                 Render();
 
                 Update();
             }
+            Release();
         }
         private void Init()
         {
+            Data.Init();
 
             pokedexScene = new PokedexScene();
             mainMenuScene = new MainMenuScene();
@@ -55,6 +57,8 @@ namespace Console_RPG
         {
             curScene.Update();
         }
+
+
         public bool Input(out int command)
         {
             string input = Console.ReadLine();
@@ -67,18 +71,22 @@ namespace Console_RPG
             name = input;
             return input != null;
         }
-        public void Deck()
-        {
-            curScene = pokedexScene;
-        }
         public void GameOver()
         {
             running = false;
+        }
+        public void Deck()
+        {
+            curScene = pokedexScene;
         }
         public void MainMenu()
         {
             curScene = mainMenuScene;
         }
-        
+
+        private void Release()
+        {
+            Data.Release();
+        }
     }
 }

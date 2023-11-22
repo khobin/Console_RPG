@@ -6,8 +6,20 @@ using System.Threading.Tasks;
 
 namespace Console_RPG
 {
-    public class Data
+    public static class Data
     {
+        public static Player player;
+        
+        public static void Init()
+        {
+            player = new Player();
+        }
+
+        public static void Release()
+        {
+
+        }
+
         public struct Stat
         {
             public int hp;
