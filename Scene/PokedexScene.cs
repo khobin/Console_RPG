@@ -31,7 +31,6 @@ namespace Console_RPG
             foreach (Pokemon p in pokedex.Values)
             {
                 sb.AppendLine(p.PrintPokemon());
-                sb.AppendLine("-------------------------------------------------------------------");
             }
             sb.AppendLine("1. 검색하기");
             sb.AppendLine("2. 돌아가기");

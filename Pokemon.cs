@@ -33,14 +33,15 @@ namespace Console_RPG
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat($"ID : {Id,03:X3}\t");
-            sb.AppendFormat($"Name : {Name}  \t");
+            sb.AppendFormat($"Name : {Name}\t\t");
             sb.AppendFormat($"Type : ");
             foreach (int type in types)
             {
-                sb.AppendFormat("{0} ",(Data.Type)type);
+                sb.AppendFormat("{0} ",(Type.PokemonType)type);
             }
             sb.AppendLine("\n");
             sb.Append(stat.PrintStat());
+            sb.Append("\n-------------------------------------------------------------------");
 
             return sb.ToString();
         }

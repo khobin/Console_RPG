@@ -14,6 +14,7 @@ namespace Console_RPG
         private Scene curScene;
         private MainMenuScene mainMenuScene;
         private PokedexScene pokedexScene;
+        private InventoryScene inventoryScene;
 
         private Game() { }
         private static Game instance = null;
@@ -44,6 +45,7 @@ namespace Console_RPG
 
             pokedexScene = new PokedexScene();
             mainMenuScene = new MainMenuScene();
+            inventoryScene = new InventoryScene();
 
             curScene = mainMenuScene;
         }

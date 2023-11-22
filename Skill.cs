@@ -13,6 +13,6 @@ namespace Console_RPG
         public string? Description { get; set; }
         public int PP { get; set; }
         private int MaxPP;
-        public Data.Type Type { get; set; }
+        public Type.PokemonType Type { get; set; }
     }
 }
