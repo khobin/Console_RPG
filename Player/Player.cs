@@ -11,6 +11,12 @@ namespace Console_RPG
         int money;
         public List<Pokemon> pokemons;
 
+        public Player()
+        {
+            pokemons = new List<Pokemon>(6);
+            Pokemon p = Data.pokedex["리자몽"].Clone();
+            pokemons.Add(p);
+        }
 
         public void ItemUse(Item item)
         {
@@ -18,9 +24,6 @@ namespace Console_RPG
             {
                 case Type.ItemType.볼:
 
-                    break;
-                case Type.ItemType.물약:
-                    HealItem(item);
                     break;
                 case Type.ItemType.배틀아이템:
                     BattleItem(item);

@@ -10,13 +10,7 @@ namespace Console_RPG
     {
         Dictionary<string, Pokemon> pokedex;
         Pokemon findPokemon = null;
-        public PokedexScene()
-        {
-            //json 파싱 해서 pokedex에 넣기
-            JsonManager.Instance.LoadPokemonData();
-            pokedex = JsonManager.Instance.GetAllData();
-        }
-
+        
         public override void Render()
         {
             StringBuilder sb = new StringBuilder();
@@ -28,7 +22,7 @@ namespace Console_RPG
 
                 findPokemon = null;
             }
-            foreach (Pokemon p in pokedex.Values)
+            foreach (Pokemon p in Data.pokedex.Values)
             {
                 sb.AppendLine(p.PrintPokemon());
             }
@@ -52,10 +46,9 @@ namespace Console_RPG
                         findPokemon = pokedex[find];
                     else
                         Console.WriteLine("잘못된 값 입력. .");
-                    //TODO : 포켓몬 찾는 class 새로 생성해서 전담하기.
                     break;
                 case 2:
-                    Game.Instance.MainMenu();
+                    Game.Instance.PopScene();
                     break;
             }
         }

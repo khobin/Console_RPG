@@ -1,0 +1,39 @@
+[
+  {
+    "id": "1",
+    "name": "째려보기",
+    "desc": "상대 기분이 나쁩니다(방어력을 떨어뜨립니다)",
+    "amount": "2",
+    "PP": "20",
+    "pokemonType": "0",
+    "skillType" : 2,
+  },
+  {
+    "id": "2",
+    "name": "불빠따",
+    "desc": "불타는 빠따로 때립니다",
+    "amount": "15",
+    "PP": "10",
+    "pokemonType": "2",
+    "skillType": 1
+  },
+  {
+    "id": "3",
+    "name": "물주먹",
+    "desc": "시원합니다",
+    "amount": "15",
+    "PP": "20",
+    "pokemonType": "2",
+    "skillType": 1
+  },
+  {
+    "id": "4",
+    "name": "풀베기",
+    "desc": "따끔합니다",
+    "amount": "15",
+    "PP": "20",
+    "pokemonType": "3",
+    "skillType": 1
+  }
+
+]

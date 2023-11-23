@@ -24,15 +24,17 @@ namespace Console_RPG
             }
         }
 
-        private Dictionary<string, Pokemon> pokemon_dic = new Dictionary<string, Pokemon>();
-
-        public void LoadPokemonData()
+        private Dictionary<string, Pokemon> pokemon_dic = new Dictionary<string, Pokemon>(10);
+        private Dictionary<string, Skill> skill_dic = new Dictionary<string, Skill>();
+        public void LoadData()
         {
-            string json = File.ReadAllText("../../../docs/test.json");
+            string pokemonJson = File.ReadAllText("../../../docs/pokemon.json");
+            string skillJson = File.ReadAllText("../../../docs/skill.json");
 
-            Pokemon[]? pokemons = JsonConvert.DeserializeObject<Pokemon[]>(json);
-
-            this.pokemon_dic = pokemons.ToDictionary(x => x.Name);
+            Pokemon[]? pokemons = JsonConvert.DeserializeObject<Pokemon[]>(pokemonJson);
+            Skill[]? skills = JsonConvert.DeserializeObject<Skill[]>(skillJson);
+            pokemon_dic = pokemons.ToDictionary(x => x.Name);
+            skill_dic = skills.ToDictionary(x => x.Name);
         }
         
         public Pokemon GetPokemonData(string name)
@@ -43,9 +45,13 @@ namespace Console_RPG
             return p;
         }
 
-        public Dictionary<string, Pokemon> GetAllData()
+        public Dictionary<string, Pokemon> GetPokemonData()
         {
-            return this.pokemon_dic;
+            return pokemon_dic;
+        }
+        public Dictionary<string, Skill> GetSkillData()
+        {
+            return skill_dic;
         }
     }
 }

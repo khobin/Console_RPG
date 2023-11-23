@@ -11,10 +11,11 @@ namespace Console_RPG
     {
         public bool running = true;
 
+        private Stack<Scene> sceneStack = new Stack<Scene>();
+
+        public Dictionary<string, Scene> sceneDic = new Dictionary<string, Scene>();
+
         private Scene curScene;
-        private MainMenuScene mainMenuScene;
-        private PokedexScene pokedexScene;
-        private InventoryScene inventoryScene;
 
         private Game() { }
         private static Game instance = null;
@@ -43,11 +44,15 @@ namespace Console_RPG
         {
             Data.Init();
 
-            pokedexScene = new PokedexScene();
-            mainMenuScene = new MainMenuScene();
-            inventoryScene = new InventoryScene();
+            sceneDic.Add("메인메뉴", new MainMenuScene());
+            sceneDic.Add("인벤토리", new InventoryScene());
+            sceneDic.Add("도감", new PokedexScene());
+            sceneDic.Add("포켓몬선택",new SelectPokemonScene());
+            sceneDic.Add("배틀",new BattleScene());
 
-            curScene = mainMenuScene;
+            sceneStack.Push(sceneDic["메인메뉴"]);
+
+            curScene = sceneStack.Peek();
         }
         private void Render()   // 렌더에서 그리고 업데이트로 값 입력 받거나 상황이 달라짐
         {
@@ -73,19 +78,38 @@ namespace Console_RPG
             name = input;
             return input != null;
         }
+        public int Random(int max)
+        {
+            Random rand = new Random();
+            return rand.Next(0, max);
+        }
         public void GameOver()
         {
             running = false;
         }
-        public void Deck()
+        
+        public void PushScene(string sceneKey)
         {
-            curScene = pokedexScene;
+            if(!sceneDic.ContainsKey(sceneKey))
+            {
+                Console.WriteLine($"key {sceneKey} is not exist !!");
+                return;
+            }
+            sceneStack.Push(sceneDic[sceneKey]);
+            
+            curScene = sceneStack.Peek();
         }
-        public void MainMenu()
+        public void PopScene()
         {
-            curScene = mainMenuScene;
+            if(sceneStack.Count > 0)
+            {
+                sceneStack.Pop();
+            }
+            if(!sceneStack.TryPeek(out curScene))
+            {
+                GameOver();
+            }
         }
-
         private void Release()
         {
             Data.Release();

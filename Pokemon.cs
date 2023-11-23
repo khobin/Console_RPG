@@ -7,13 +7,13 @@ using static Console_RPG.Data;
 
 namespace Console_RPG
 {
-    public class Pokemon : ICloneable
+    public class Pokemon 
     {
         public int Id { get; set; }
         public string? Name { get; set; }
         public int[] types = new int[2];//public Data.Type type;
         public Data.Stat stat;
-        private List<Skill>? skills;
+        public List<Skill>? skills;
 
         public Pokemon()
         {
@@ -26,9 +26,10 @@ namespace Console_RPG
             this.Name = name;
             this.types = types;
             this.stat = stat;
+            skills = new List<Skill>();
         }
         
-        public object Clone()
+        public Pokemon Clone()
         {
             Pokemon p = new Pokemon();
             p.Id = Id;
@@ -42,11 +43,51 @@ namespace Console_RPG
         }
         public void AddSkill(Skill skill)
         {
-            if (skills == null)
-                skills = new List<Skill>();
-            skills.Add(skill);
+            if(skills.Count == 4)
+            {
+                Console.WriteLine("스킬칸 꽉참;");
+                //TODO : Skill 꽉 찼을 때 바꿀 스킬 고르기
+            }
+            else
+            {
+                skills.Add(skill);
+            }
+            
         }
+        public void UseSkill(Pokemon enemy, int index)
+        {
+            Skill skill = skills[index];
+            Console.WriteLine($"{Name} 이/가 {enemy.Name}에게 {skill.Name}을 사용합니다.");
+            Thread.Sleep(1000);
+            Console.WriteLine($"{skill.Desc} ! !");
+            switch (skill.skillType)
+            {
+                case Type.SkillType.공격:
+                    Attack(enemy, skill);
+                    break;
+                case Type.SkillType.버프:
+                    Buff(enemy, skill);
+                    break;
 
+            }
+        }
+        private void Attack(Pokemon enemy, Skill skill)
+        {
+            Console.WriteLine();
+        }
+        private void TakeDamage(int damage)
+        {
+            Thread.Sleep(1000);
+
+            Console.WriteLine($"{Name} 이/가 {damage}만큼 공격받았습니다.");
+            stat.hp -= damage;
+        }
+        private void Buff(Pokemon enemy, Skill skill)
+        {
+            Thread.Sleep(1000);
+            enemy.stat.defense -= skill.Amount;
+            Console.WriteLine($"{enemy.Name}의 방어력이 {skill.Amount}만큼 떨어졌습니다.");
+        }
         public string PrintPokemon()
         {
             StringBuilder sb = new StringBuilder();

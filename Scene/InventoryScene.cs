@@ -26,7 +26,7 @@ namespace Console_RPG
                     UseItem();
                     break;
                 case 2:
-                    Game.Instance.MainMenu();
+                    Game.Instance.PopScene();
                     break;
                 default:
                     Console.WriteLine("잘못된 값 입력. .");

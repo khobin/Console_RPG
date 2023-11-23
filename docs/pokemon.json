@@ -8,6 +8,7 @@
     ],
     "stat": {
       "hp": "100",
+      "maxHp" : "100",
       "attack": "10",
       "defense": "5",
       "speed": "5"
@@ -22,6 +23,7 @@
     ],
     "stat": {
       "hp": "150",
+      "maxHp": "150",
       "attack": "15",
       "defense": "8",
       "speed": "6"
@@ -36,6 +38,7 @@
     ],
     "stat": {
       "hp": "300",
+      "maxHp": "300",
       "attack": "25",
       "defense": "20",
       "speed": "7"
@@ -49,6 +52,7 @@
     ],
     "stat": {
       "hp": "100",
+      "maxHp": "100",
       "attack": "15",
       "defense": "5",
       "speed": "6"
@@ -62,6 +66,7 @@
     ],
     "stat": {
       "hp": "130",
+      "maxHp": "130",
       "attack": "19",
       "defense": "6",
       "speed": "7"
@@ -76,6 +81,7 @@
     ],
     "stat": {
       "hp": "270",
+      "maxHp": "270",
       "attack": "20",
       "defense": "13",
       "speed": "9"

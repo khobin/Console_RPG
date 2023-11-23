@@ -32,9 +32,13 @@ namespace Console_RPG
         public enum ItemType
         {
             볼 = 0,
-            물약 = 1,
-            배틀아이템 = 2,
-            기타 = 3,
+            배틀아이템 = 1,
+            기타 = 2,
+        }
+        public enum SkillType
+        {
+            공격 = 0,
+            버프 = 1,
         }
     }
 }
