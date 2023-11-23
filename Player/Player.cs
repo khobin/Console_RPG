@@ -9,7 +9,7 @@ namespace Console_RPG
     public class Player
     {
         int money;
-        List<Pokemon> pokemons;
+        public List<Pokemon> pokemons;
 
 
         public void ItemUse(Item item)
@@ -20,10 +20,10 @@ namespace Console_RPG
 
                     break;
                 case Type.ItemType.물약:
-
+                    HealItem(item);
                     break;
                 case Type.ItemType.배틀아이템:
-
+                    BattleItem(item);
                     break;
                 case Type.ItemType.기타:
                     

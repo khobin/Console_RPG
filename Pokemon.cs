@@ -7,7 +7,7 @@ using static Console_RPG.Data;
 
 namespace Console_RPG
 {
-    public class Pokemon
+    public class Pokemon : ICloneable
     {
         public int Id { get; set; }
         public string? Name { get; set; }
@@ -15,12 +15,30 @@ namespace Console_RPG
         public Data.Stat stat;
         private List<Skill>? skills;
 
+        public Pokemon()
+        {
+
+        }
+
         public Pokemon(int id, string name, int[] types, Data.Stat stat)
         {
             this.Id = id;
             this.Name = name;
             this.types = types;
             this.stat = stat;
+        }
+        
+        public object Clone()
+        {
+            Pokemon p = new Pokemon();
+            p.Id = Id;
+            p.Name = Name;
+            for (int i = 0; i < types.Length; i++)
+            {
+                p.types[i] = types[i];
+            }
+            p.stat = stat;
+            return p;
         }
         public void AddSkill(Skill skill)
         {
@@ -46,6 +64,6 @@ namespace Console_RPG
             return sb.ToString();
         }
 
-
+        
     }
 }
