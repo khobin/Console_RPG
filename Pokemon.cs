@@ -39,6 +39,10 @@ namespace Console_RPG
                 p.types[i] = types[i];
             }
             p.stat = stat;
+            foreach (Skill skill in skills)
+            {
+                p.AddSkill(skill.Clone());
+            }
             return p;
         }
         public void AddSkill(Skill skill)
@@ -65,28 +69,33 @@ namespace Console_RPG
                 case Type.SkillType.공격:
                     Attack(enemy, skill);
                     break;
-                case Type.SkillType.버프:
-                    Buff(enemy, skill);
+                case Type.SkillType.디버프:
+                    DeBuff(enemy, skill);
                     break;
 
             }
         }
         private void Attack(Pokemon enemy, Skill skill)
         {
-            Console.WriteLine();
+            Thread.Sleep(1000);
+
+
+            enemy.TakeDamage(skill.Amount);
         }
         private void TakeDamage(int damage)
         {
+            // PokemonType, SkillType 비교해서 데미지 계산
             Thread.Sleep(1000);
 
-            Console.WriteLine($"{Name} 이/가 {damage}만큼 공격받았습니다.");
-            stat.hp -= damage;
+            Console.WriteLine($"{Name} 이/가 {damage - stat.defense}만큼 공격받았습니다.");
+            stat.hp -= (damage - stat.defense);
         }
-        private void Buff(Pokemon enemy, Skill skill)
+        private void DeBuff(Pokemon enemy, Skill skill)
         {
             Thread.Sleep(1000);
-            enemy.stat.defense -= skill.Amount;
+
             Console.WriteLine($"{enemy.Name}의 방어력이 {skill.Amount}만큼 떨어졌습니다.");
+            enemy.stat.defense -= skill.Amount;
         }
         public string PrintPokemon()
         {

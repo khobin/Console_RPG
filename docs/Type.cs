@@ -38,7 +38,7 @@ namespace Console_RPG
         public enum SkillType
         {
             공격 = 0,
-            버프 = 1,
+            디버프 = 1,
         }
     }
 }

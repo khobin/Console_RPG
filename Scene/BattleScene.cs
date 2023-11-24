@@ -15,7 +15,11 @@ namespace Console_RPG
         public override void Render()
         {
             hasPokemon = Data.player.pokemons.Count > 0 ? true : false;
-            if (!hasPokemon) return;
+            if (!hasPokemon)
+            {
+                Data.player.pokemons.Add(Data.pokedex["이상해씨"].Clone());
+                return;
+            }
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("====================Enemy====================");
             if (!fighting)
@@ -72,7 +76,7 @@ namespace Console_RPG
                 // player의 포켓몬이 스킬 쓰기 -> enemy에게.. 
                 // action을 어떻게 구현할지 고민 -> action 안써도 가능할 듯 그냥 Pokemon의 useSkill 에 switch(SkillType) 으로 해도 상관 없을 지도
                 //Data.player.pokemons[0].skills[command]
-
+                Data.player.pokemons[0].UseSkill(enemy, command);
             }
             else
             {

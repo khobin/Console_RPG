@@ -31,10 +31,10 @@ namespace Console_RPG
             string pokemonJson = File.ReadAllText("../../../docs/pokemon.json");
             string skillJson = File.ReadAllText("../../../docs/skill.json");
 
-            Pokemon[]? pokemons = JsonConvert.DeserializeObject<Pokemon[]>(pokemonJson);
             Skill[]? skills = JsonConvert.DeserializeObject<Skill[]>(skillJson);
-            pokemon_dic = pokemons.ToDictionary(x => x.Name);
             skill_dic = skills.ToDictionary(x => x.Name);
+            Pokemon[]? pokemons = JsonConvert.DeserializeObject<Pokemon[]>(pokemonJson);
+            pokemon_dic = pokemons.ToDictionary(x => x.Name);
         }
         
         public Pokemon GetPokemonData(string name)
