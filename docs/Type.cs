@@ -40,5 +40,33 @@ namespace Console_RPG
             공격 = 0,
             디버프 = 1,
         }
+        public struct Stat
+        {
+            public int hp;
+            public int maxHp;
+            public int attack;
+            public int defense;
+            public int speed;
+
+            public Stat(int hp, int maxHp, int attack, int defense, int speed)
+            {
+                this.hp = hp;
+                this.maxHp = maxHp;
+                this.attack = attack;
+                this.defense = defense;
+                this.speed = speed;
+            }
+            public string PrintStat()
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.AppendFormat($"HP : {hp,03}\t");
+                sb.AppendFormat($"ATK : {attack,03}\t");
+                sb.AppendFormat($"DEF : {defense,03} \t");
+                sb.AppendFormat($"SPD : {speed,03}\t");
+
+
+                return sb.ToString();
+            }
+        }
     }
 }

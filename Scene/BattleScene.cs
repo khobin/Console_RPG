@@ -14,10 +14,10 @@ namespace Console_RPG
         
         public override void Render()
         {
-            hasPokemon = Data.player.pokemons.Count > 0 ? true : false;
+            hasPokemon = Data.player.pokemon != null ? true : false;
             if (!hasPokemon)
             {
-                Data.player.pokemons.Add(Data.pokedex["이상해씨"].Clone());
+                Data.player.pokemon = Data.pokedex["이상해씨"].Clone();
                 return;
             }
             StringBuilder sb = new StringBuilder();
@@ -39,7 +39,7 @@ namespace Console_RPG
                 sb.AppendLine($"{enemy.Name}\t\t\t{enemy.stat.hp,3}/{enemy.stat.maxHp,3}");
                 sb.AppendLine("\n\n\n");
                 sb.AppendLine("====================Pokemon====================");
-                sb.AppendLine($"{Data.player.pokemons[0].Name}\t\t\t{Data.player.pokemons[0].stat.hp,3}/{Data.player.pokemons[0].stat.maxHp,3}");
+                sb.AppendLine($"{Data.player.pokemon.Name}\t\t\t{Data.player.pokemon.stat.hp,3}/{Data.player.pokemon.stat.maxHp,3}");
             }
             Console.WriteLine(sb.ToString());
         }
@@ -57,9 +57,11 @@ namespace Console_RPG
             if (fighting)
             {
                 sb.AppendLine("무엇을 할까?");
-                for (int i = 0; i < Data.player.pokemons[0].skills.Count; i++)
+                for (int i = 0; i < Data.player.pokemon.skills.Count; i++)
                 {
-                    sb.Append($"{i + 1}. {Data.player.pokemons[0].skills[i].PrintSkill()}");
+                    // 스킬 두 번씩 나옴
+                    // Pokemon 생성자에서 한 번, Clone에서 한 번 더 들어가서인듯
+                    sb.Append($"{i + 1}. {Data.player.pokemon.skills[i].PrintSkill()} ");
                 }
                 sb.AppendLine();
                 sb.Append("사용할 스킬 인덱스 입력 : ");
@@ -67,7 +69,7 @@ namespace Console_RPG
 
                 int command;
                 Game.Instance.Input(out command);
-                if (command < 1 || command > Data.player.pokemons[0].skills.Count)
+                if (command < 1 || command > Data.player.pokemon.skills.Count)
                 {
                     Console.WriteLine("잘못된 값 입력. .");
                     return;
@@ -76,7 +78,7 @@ namespace Console_RPG
                 // player의 포켓몬이 스킬 쓰기 -> enemy에게.. 
                 // action을 어떻게 구현할지 고민 -> action 안써도 가능할 듯 그냥 Pokemon의 useSkill 에 switch(SkillType) 으로 해도 상관 없을 지도
                 //Data.player.pokemons[0].skills[command]
-                Data.player.pokemons[0].UseSkill(enemy, command);
+                Data.player.pokemon.UseSkill(enemy, command);
             }
             else
             {

@@ -17,7 +17,7 @@ namespace Console_RPG
             sb.AppendLine("1. 포켓몬 도감");
             sb.AppendLine("2. 인벤토리");
             sb.AppendLine("3. 배틀");
-            sb.AppendLine("3. 종료하기");
+            sb.AppendLine("4. 종료하기");
 
             Console.WriteLine(sb.ToString());
         }

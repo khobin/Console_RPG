@@ -11,30 +11,12 @@ namespace Console_RPG
 {
     public class JsonManager
     {
-
-        private JsonManager() { }
-        private static JsonManager instance = null;
-        public static JsonManager Instance
-        {
-            get
-            {
-                if (instance == null)
-                    instance = new JsonManager();
-                return instance;
-            }
-        }
-
         private Dictionary<string, Pokemon> pokemon_dic = new Dictionary<string, Pokemon>(10);
         private Dictionary<string, Skill> skill_dic = new Dictionary<string, Skill>();
         public void LoadData()
         {
-            string pokemonJson = File.ReadAllText("../../../docs/pokemon.json");
-            string skillJson = File.ReadAllText("../../../docs/skill.json");
-
-            Skill[]? skills = JsonConvert.DeserializeObject<Skill[]>(skillJson);
-            skill_dic = skills.ToDictionary(x => x.Name);
-            Pokemon[]? pokemons = JsonConvert.DeserializeObject<Pokemon[]>(pokemonJson);
-            pokemon_dic = pokemons.ToDictionary(x => x.Name);
+            //LoadSkill();
+            //LoadPokemon();
         }
         
         public Pokemon GetPokemonData(string name)
@@ -45,12 +27,18 @@ namespace Console_RPG
             return p;
         }
 
-        public Dictionary<string, Pokemon> GetPokemonData()
+        public Dictionary<string, Pokemon> LoadPokemon()
         {
+            string pokemonJson = File.ReadAllText("../../../docs/pokemon.json");
+            Pokemon[]? pokemons = JsonConvert.DeserializeObject<Pokemon[]>(pokemonJson);
+            pokemon_dic = pokemons.ToDictionary(x => x.Name);
             return pokemon_dic;
         }
-        public Dictionary<string, Skill> GetSkillData()
+        public Dictionary<string, Skill> LoadSkill()
         {
+            string skillJson = File.ReadAllText("../../../docs/skill.json");
+            Skill[]? skills = JsonConvert.DeserializeObject<Skill[]>(skillJson);
+            skill_dic = skills.ToDictionary(x => x.Name);
             return skill_dic;
         }
     }

@@ -18,30 +18,22 @@ namespace Console_RPG
         public Type.SkillType skillType { get; set; }
         public Action<Pokemon> action;
 
-        public Skill() { }
-        public Skill(int id, string? name, string? description,int amount, int PP, Type.PokemonType pokemonType, Type.SkillType skillType)
+        
+        public Skill(int id, string? name, string? description,int amount, int PP, int MaxPP, Type.PokemonType pokemonType, Type.SkillType skillType)
         {
             Id = id;
             Name = name;
             Desc = description;
             Amount = amount;
             this.PP = PP;
-            MaxPP = PP;
+            this.MaxPP = MaxPP;
             this.pokemonType = pokemonType;
             this.skillType = skillType;
         }
         public Skill Clone()
         {
-            Skill newSkill = new Skill();
-            newSkill.Id = Id;
-            newSkill.Name = Name;
-            newSkill.Desc = Desc;
-            newSkill.Amount = Amount;
-            newSkill.PP = PP;
-            newSkill.MaxPP = MaxPP;
-            newSkill.pokemonType = pokemonType;
-            newSkill.skillType = skillType;
-
+            Skill newSkill = new Skill(Id, Name, Desc, Amount, PP, MaxPP, pokemonType, skillType);
+            
             return newSkill;
         }
         public string PrintSkill()

@@ -9,39 +9,33 @@ namespace Console_RPG
 {
     public class Pokemon 
     {
-        public int Id { get; set; }
-        public string? Name { get; set; }
-        public int[] types = new int[2];//public Data.Type type;
-        public Data.Stat stat;
+        public int Id { get; }
+        public string? Name { get; }
+        public int[] types = new int[2];//public Type.PokemonType type;
+        public Type.Stat stat;
         public List<Skill>? skills;
 
-        public Pokemon()
-        {
-
-        }
-
-        public Pokemon(int id, string name, int[] types, Data.Stat stat)
+        public Pokemon(int id, string name, int[] types, Type.Stat stat)
         {
             this.Id = id;
             this.Name = name;
             this.types = types;
             this.stat = stat;
             skills = new List<Skill>();
+            if(skills.Count == 0)
+                skills.Add(skillDic["몸통박치기"].Clone());
         }
         
         public Pokemon Clone()
         {
-            Pokemon p = new Pokemon();
-            p.Id = Id;
-            p.Name = Name;
-            for (int i = 0; i < types.Length; i++)
+            Pokemon p = new Pokemon(Id, Name, types, stat);
+            
+            if(skills != null && skills.Count > 0)
             {
-                p.types[i] = types[i];
-            }
-            p.stat = stat;
-            foreach (Skill skill in skills)
-            {
-                p.AddSkill(skill.Clone());
+                foreach (Skill skill in skills)
+                {
+                    p.AddSkill(skill.Clone());
+                }
             }
             return p;
         }
@@ -85,6 +79,7 @@ namespace Console_RPG
         private void TakeDamage(int damage)
         {
             // PokemonType, SkillType 비교해서 데미지 계산
+            // ex) 효과가 굉장했다. 미비했다.
             Thread.Sleep(1000);
 
             Console.WriteLine($"{Name} 이/가 {damage - stat.defense}만큼 공격받았습니다.");

@@ -112,6 +112,8 @@ namespace Console_RPG
         }
         private void Release()
         {
+            Console.Clear();
+            
             Data.Release();
         }
     }

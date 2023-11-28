@@ -9,13 +9,11 @@ namespace Console_RPG
     public class Player
     {
         int money;
-        public List<Pokemon> pokemons;
+        public Pokemon pokemon;
 
         public Player()
         {
-            pokemons = new List<Pokemon>(6);
-            Pokemon p = Data.pokedex["리자몽"].Clone();
-            pokemons.Add(p);
+            pokemon = Data.pokedex["리자몽"].Clone();
         }
 
         public void ItemUse(Item item)
