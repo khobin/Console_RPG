@@ -20,13 +20,13 @@ namespace Console_RPG
         {
             switch (item.ItemType)
             {
-                case Type.ItemType.볼:
+                case ItemType.볼:
 
                     break;
-                case Type.ItemType.배틀아이템:
+                case ItemType.배틀아이템:
                     BattleItem(item);
                     break;
-                case Type.ItemType.기타:
+                case ItemType.기타:
                     
                     break;
 

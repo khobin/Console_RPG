@@ -14,12 +14,12 @@ namespace Console_RPG
         public int Amount { get; set; }
         public int PP { get; set; }
         public int MaxPP;
-        public Type.PokemonType pokemonType { get; set; }
-        public Type.SkillType skillType { get; set; }
+        public PokemonType pokemonType { get; set; }
+        public SkillType skillType { get; set; }
         public Action<Pokemon> action;
 
         
-        public Skill(int id, string? name, string? description,int amount, int PP, int MaxPP, Type.PokemonType pokemonType, Type.SkillType skillType)
+        public Skill(int id, string? name, string? description,int amount, int PP, int MaxPP, PokemonType pokemonType, SkillType skillType)
         {
             Id = id;
             Name = name;

@@ -12,10 +12,10 @@ namespace Console_RPG
         public int Id { get; }
         public string? Name { get; }
         public int[] types = new int[2];//public Type.PokemonType type;
-        public Type.Stat stat;
+        public Stat stat;
         public List<Skill>? skills;
 
-        public Pokemon(int id, string name, int[] types, Type.Stat stat)
+        public Pokemon(int id, string name, int[] types, Stat stat)
         {
             this.Id = id;
             this.Name = name;
@@ -60,10 +60,10 @@ namespace Console_RPG
             Console.WriteLine($"{skill.Desc} ! !");
             switch (skill.skillType)
             {
-                case Type.SkillType.공격:
+                case SkillType.공격:
                     Attack(enemy, skill);
                     break;
-                case Type.SkillType.디버프:
+                case SkillType.디버프:
                     DeBuff(enemy, skill);
                     break;
 
@@ -100,7 +100,7 @@ namespace Console_RPG
             sb.AppendFormat($"Type : ");
             foreach (int type in types)
             {
-                sb.AppendFormat("{0} ",(Type.PokemonType)type);
+                sb.AppendFormat("{0} ",(PokemonType)type);
             }
             sb.AppendLine("\n");
             sb.Append(stat.PrintStat());

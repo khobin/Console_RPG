@@ -10,10 +10,10 @@ namespace Console_RPG
     {
         public string Name { get; set; }
         public string Desc {  get; set; }
-        public Type.ItemType ItemType { get; set; }
+        public ItemType ItemType { get; set; }
         public event Action<Item> OnUse;
 
-        public Item(string name, string desc, Type.ItemType type)
+        public Item(string name, string desc, ItemType type)
         {
             Name = name;
             Desc = desc;

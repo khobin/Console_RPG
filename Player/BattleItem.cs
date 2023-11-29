@@ -9,7 +9,7 @@ namespace Console_RPG
     public class BattleItem : Item
     {
         int increse;
-        public BattleItem(string name, string desc, Type.ItemType type) : base(name, desc, type)
+        public BattleItem(string name, string desc, ItemType type) : base(name, desc, type)
         {
 
         }
