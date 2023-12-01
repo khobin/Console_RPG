@@ -8,14 +8,38 @@ namespace Console_RPG
 {
     public class Player
     {
-        int money;
+        public char icon = 'P';
         public Pokemon pokemon;
-
+        public Position pos;
         public Player()
         {
-            pokemon = Data.pokedex["리자몽"].Clone();
+            pokemon = Data.Instance.pokedex["리자몽"].Clone();
         }
 
+        public void Move(Direction dir)
+        {
+            Position prevPos = pos;
+            switch (dir)
+            {
+                case Direction.Up:
+                    pos.y--;
+                    break;
+                case Direction.Down:
+                    pos.y++;
+                    break;
+                case Direction.Left:
+                    pos.x--;
+                    break;
+                case Direction.Right:
+                    pos.x++;
+                    break;
+            }
+
+            if ('X' == Data.Instance.map[pos.y, pos.x])
+            {
+                pos = prevPos;
+            }
+        }
         public void ItemUse(Item item)
         {
             switch (item.ItemType)
@@ -32,17 +56,6 @@ namespace Console_RPG
 
             }
         }
-        //private Pokemon SelectPokemon()
-        //{
-        //    Console.WriteLine("아이템을 사용할 포켓몬을 고르세요.");
-        //    //TODO : SelectPokemom Scene , class만들기.
-        //    StringBuilder sb = new StringBuilder();
-        //    for (int i = 0; i < pokemons.Count; i++)
-        //    {
-        //        sb.AppendLine($"Index : {i}");
-        //        sb.AppendLine(pokemons[i].PrintPokemon());
-        //    }
-        //}
         private void HealItem(Item item)
         {
 

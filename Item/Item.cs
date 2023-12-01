@@ -18,8 +18,8 @@ namespace Console_RPG
             Name = name;
             Desc = desc;
             ItemType = type;
-            OnUse -= Data.player.ItemUse;
-            OnUse += Data.player.ItemUse;
+            OnUse -= Data.Instance.player.ItemUse;
+            OnUse += Data.Instance.player.ItemUse;
         }
         public void Use()
         {

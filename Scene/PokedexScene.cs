@@ -10,7 +10,11 @@ namespace Console_RPG
     {
         Dictionary<string, Pokemon> pokedex;
         Pokemon findPokemon = null;
-        
+
+        public PokedexScene(Game game) : base(game)
+        {
+        }
+
         public override void Render()
         {
             StringBuilder sb = new StringBuilder();
@@ -22,7 +26,7 @@ namespace Console_RPG
 
                 findPokemon = null;
             }
-            foreach (Pokemon p in Data.pokedex.Values)
+            foreach (Pokemon p in Data.Instance.pokedex.Values)
             {
                 sb.AppendLine(p.PrintPokemon());
             }
@@ -34,21 +38,21 @@ namespace Console_RPG
         
         public override void Update()
         {
-            int command;
-            Game.Instance.Input(out command);
-            switch (command)
+            switch (game.inputKey)
             {
-                case 1:
+                case ConsoleKey.D1:
                     Console.WriteLine("검색할 포켓몬의 이름을 입력하세요.");
-                    string find;
-                    Game.Instance.Input(out find);
+                    string find = Console.ReadLine();
                     if(pokedex.ContainsKey(find))
                         findPokemon = pokedex[find];
                     else
+                    {
                         Console.WriteLine("잘못된 값 입력. .");
+                        Thread.Sleep(1000);
+                    }
                     break;
-                case 2:
-                    Game.Instance.PopScene();
+                case ConsoleKey.D2:
+                    game.PopScene();
                     break;
             }
         }

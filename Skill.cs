@@ -14,12 +14,12 @@ namespace Console_RPG
         public int Amount { get; set; }
         public int PP { get; set; }
         public int MaxPP;
-        public PokemonType pokemonType { get; set; }
+        public int pokemonType { get; set; }
         public SkillType skillType { get; set; }
         public Action<Pokemon> action;
 
         
-        public Skill(int id, string? name, string? description,int amount, int PP, int MaxPP, PokemonType pokemonType, SkillType skillType)
+        public Skill(int id, string? name, string? description,int amount, int PP, int MaxPP, string pokemonType, SkillType skillType)
         {
             Id = id;
             Name = name;
@@ -27,12 +27,15 @@ namespace Console_RPG
             Amount = amount;
             this.PP = PP;
             this.MaxPP = MaxPP;
-            this.pokemonType = pokemonType;
+            if (Enum.TryParse(pokemonType, out PokemonType parsedType))
+            {
+                this.pokemonType = (int)parsedType;
+            }
             this.skillType = skillType;
         }
         public Skill Clone()
         {
-            Skill newSkill = new Skill(Id, Name, Desc, Amount, PP, MaxPP, pokemonType, skillType);
+            Skill newSkill = new Skill(Id, Name, Desc, Amount, PP, MaxPP, pokemonType.ToString(), skillType);
             
             return newSkill;
         }
@@ -43,6 +46,13 @@ namespace Console_RPG
             sb.Append($"{Name}  {PP,2}/{MaxPP,2}");
 
             return sb.ToString();
+        }
+        public bool Equals(Skill otherSkill)
+        {
+            if (otherSkill == null)
+                return false;
+
+            return this.Name == otherSkill.Name;
         }
     }
 }

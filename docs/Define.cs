@@ -8,24 +8,10 @@ namespace Console_RPG
 {
     public enum PokemonType
     {
-        노말 = 0,
-        불꽃 = 1,
-        물 = 2,
-        풀 = 3,
-        전기 = 4,
-        얼음 = 5,
-        격투 = 6,
-        독 = 7,
-        땅 = 8,
-        비행 = 9,
-        에스퍼 = 10,
-        벌레 = 11,
-        바위 = 12,
-        고스트 = 13,
-        드래곤 = 14,
-        악 = 15,
-        강철 = 16,
-        페어리 = 17
+        불꽃 = 1 << 0,
+        물 = 1 << 1,
+        풀 = 1 << 2,
+        노말 = 1 << 3,
     }
     public enum ItemType
     {
@@ -35,8 +21,8 @@ namespace Console_RPG
     }
     public enum SkillType
     {
-        공격 = 0,
-        디버프 = 1,
+        공격 = 1,
+        디버프 = 2,
     }
     public struct Stat
     {
@@ -66,5 +52,22 @@ namespace Console_RPG
             return sb.ToString();
         }
     }
-    
+    public struct Position
+    {
+        public int x;
+        public int y;
+        public Position(int x, int y)
+        {
+            this.x = x;
+            this.y = y;
+        }
+    }
+    public enum Direction
+    {
+        Up =0,
+        Down = 1,
+        Left = 2,
+        Right = 3,
+
+    }
 }

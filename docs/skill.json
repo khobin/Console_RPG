@@ -6,7 +6,7 @@
     "amount": "5",
     "PP": "20",
     "MaxPP": "20",
-    "pokemonType": "0",
+    "pokemonType": "노말",
     "skillType": 1
   },
   {
@@ -16,7 +16,7 @@
     "amount": "2",
     "PP": "20",
     "MaxPP": "20",
-    "pokemonType": "0",
+    "pokemonType": "노말",
     "skillType": 2
   },
   {
@@ -26,7 +26,7 @@
     "amount": "15",
     "PP": "10",
     "MaxPP": "10",
-    "pokemonType": "2",
+    "pokemonType": "불꽃",
     "skillType": 1
   },
   {
@@ -36,7 +36,7 @@
     "amount": "15",
     "PP": "20",
     "MaxPP": "20",
-    "pokemonType": "2",
+    "pokemonType": "물",
     "skillType": 1
   },
   {
@@ -46,7 +46,7 @@
     "amount": "15",
     "PP": "20",
     "MaxPP": "20",
-    "pokemonType": "3",
+    "pokemonType": "풀",
     "skillType": 1
   }
 

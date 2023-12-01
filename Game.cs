@@ -11,23 +11,16 @@ namespace Console_RPG
     {
         public bool running = true;
 
-        private Stack<Scene> sceneStack = new Stack<Scene>();
+        public int command;
+        public ConsoleKey inputKey;
 
-        public Dictionary<string, Scene> sceneDic = new Dictionary<string, Scene>();
+        private Stack<Scene> sceneStack;
+
+        public Dictionary<string, Scene> sceneDic;
 
         private Scene curScene;
 
-        private Game() { }
-        private static Game instance = null;
-        public static Game Instance
-        {
-            get
-            {
-                if (instance == null)
-                    instance = new Game();
-                return instance;
-            }
-        }
+        public Game() { }
         public void Run()
         {
             Init();
@@ -42,13 +35,20 @@ namespace Console_RPG
         }
         private void Init()
         {
-            Data.Init();
+            Console.CursorVisible = false;
+            
+            Data.Instance.Init();
 
-            sceneDic.Add("메인메뉴", new MainMenuScene());
-            sceneDic.Add("인벤토리", new InventoryScene());
-            sceneDic.Add("도감", new PokedexScene());
-            sceneDic.Add("포켓몬선택",new SelectPokemonScene());
-            sceneDic.Add("배틀",new BattleScene());
+            sceneStack = new Stack<Scene>();
+
+            sceneDic = new Dictionary<string, Scene>
+            {
+                { "메인메뉴", new MainMenuScene(this) },
+                { "인벤토리", new InventoryScene(this) },
+                { "도감", new PokedexScene(this) },
+                { "맵", new MapScene(this) },
+                { "배틀", new BattleScene(this) }
+            };
 
             sceneStack.Push(sceneDic["메인메뉴"]);
 
@@ -56,48 +56,48 @@ namespace Console_RPG
         }
         private void Render()   // 렌더에서 그리고 업데이트로 값 입력 받거나 상황이 달라짐
         {
-            Thread.Sleep(1000);
             Console.Clear();
             curScene.Render();
         }
         private void Update()   // 계속 돌면서 값을 받고 그에 따라 그려주는게(Render) 달라지게 함
         {
+            Input();
             curScene.Update();
         }
-
-
-        public bool Input(out int command)
+        public void Input()
         {
-            string input = Console.ReadLine();
-            bool result = int.TryParse(input, out command);
-            return result;
+            ConsoleKeyInfo input = Console.ReadKey();
+            inputKey = input.Key;
+            Console.WriteLine();
         }
-        public bool Input(out string name)
-        {
-            string? input = Console.ReadLine();
-            name = input;
-            return input != null;
-        }
-        public int Random(int max)
-        {
-            Random rand = new Random();
-            return rand.Next(0, max);
-        }
+        
         public void GameOver()
         {
             running = false;
         }
         
-        public void PushScene(string sceneKey)
+        public void PushScene(string sceneKey, Pokemon battlePokemon = null, bool isWild = false)
         {
-            if(!sceneDic.ContainsKey(sceneKey))
+            Scene scene;
+            // sceneDic에 sceneKey가 없다면
+            if(false == sceneDic.TryGetValue(sceneKey, out scene))
             {
-                Console.WriteLine($"key {sceneKey} is not exist !!");
-                return;
+                Console.Clear();
+                Console.WriteLine("Push Scene Error !");
+                Thread.Sleep(1000);
+                Environment.Exit(0); // 강제 종료
+
             }
-            sceneStack.Push(sceneDic[sceneKey]);
+            else
+            {
+                sceneStack.Push(scene);
+                curScene = sceneStack.Peek();
+            }
             
-            curScene = sceneStack.Peek();
+            if(battlePokemon != null)
+            {
+                (scene as BattleScene).SetEnemy(battlePokemon, isWild);
+            }
         }
         public void PopScene()
         {

@@ -8,38 +8,37 @@ namespace Console_RPG
 {
     public class MainMenuScene : Scene
     {
-        public MainMenuScene() { }
-        
+        public MainMenuScene(Game game) : base(game)
+        {
+        }
+
         public override void Render()
         {
             StringBuilder sb = new StringBuilder();
             
-            sb.AppendLine("1. 포켓몬 도감");
-            sb.AppendLine("2. 인벤토리");
-            sb.AppendLine("3. 배틀");
-            sb.AppendLine("4. 종료하기");
+            sb.AppendLine("1. 모험");
+            sb.AppendLine("2. 포켓몬 도감");
+            sb.AppendLine("3. 인벤토리");
+            sb.AppendLine("Q. 종료하기");
 
             Console.WriteLine(sb.ToString());
         }
 
         public override void Update()
         {
-            int command;
-            
-            Game.Instance.Input(out command);
-            switch (command)
+            switch (game.inputKey)
             {
-                case 1:
-                    Game.Instance.PushScene("도감");
+                case ConsoleKey.D1:
+                    game.PushScene("맵");
                     break;
-                case 2:
-                    Game.Instance.PushScene("인벤토리");
+                case ConsoleKey.D2:
+                    game.PushScene("도감");
                     break;
-                case 3:
-                    Game.Instance.PushScene("배틀");
+                case ConsoleKey.D3:
+                    game.PushScene("인벤토리");
                     break;
-                case 4:
-                    Game.Instance.PopScene();
+                case ConsoleKey.Q:
+                    game.PopScene();
                     break;
                 default:
                     Console.WriteLine("잘못된 값 입력. .");
