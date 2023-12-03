@@ -36,7 +36,7 @@ namespace Console_RPG
         private void Init()
         {
             Console.CursorVisible = false;
-            
+            Console.SetWindowSize(100, 50);
             Data.Instance.Init();
 
             sceneStack = new Stack<Scene>();

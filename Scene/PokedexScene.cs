@@ -8,7 +8,6 @@ namespace Console_RPG
 {
     public class PokedexScene : Scene
     {
-        Dictionary<string, Pokemon> pokedex;
         Pokemon findPokemon = null;
 
         public PokedexScene(Game game) : base(game)
@@ -43,8 +42,8 @@ namespace Console_RPG
                 case ConsoleKey.D1:
                     Console.WriteLine("검색할 포켓몬의 이름을 입력하세요.");
                     string find = Console.ReadLine();
-                    if(pokedex.ContainsKey(find))
-                        findPokemon = pokedex[find];
+                    if(Data.Instance.pokedex.ContainsKey(find))
+                        findPokemon = Data.Instance.pokedex[find];
                     else
                     {
                         Console.WriteLine("잘못된 값 입력. .");

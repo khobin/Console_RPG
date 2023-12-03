@@ -40,10 +40,10 @@ namespace Console_RPG
             player = new Player();
             enemies = new List<Pokemon>();
 
-            LoadMap();
+            LoadData();
 
         }
-        public void LoadMap()
+        public void LoadData()
         {
             
             map = new char[,]
@@ -67,19 +67,24 @@ namespace Console_RPG
 
             player.pos = new Position(1, 1);
 
-            //#region 몬스터 추가
-            //Pokemon enemy1 = pokedex["이상해씨"].Clone();
-            //enemy1.pos = new Position(22, 1);
-            //enemies.Add(enemy1);
-            //
-            //Pokemon enemy2 = pokedex["파이리"].Clone();
-            //enemy2.pos = new Position(3, 4);
-            //enemies.Add(enemy2);
-            //
-            //Pokemon enemy3 = pokedex["리자몽"].Clone();
-            //enemy3.pos = new Position(2,13);
-            //enemies.Add(enemy3);
-            //#endregion
+            #region 몬스터 추가
+            Pokemon enemy1 = pokedex["이상해씨"].Clone();
+            enemy1.pos = new Position(22, 1);
+            enemies.Add(enemy1);
+
+            Pokemon enemy3 = pokedex["파이리"].Clone();
+            enemy3.pos = new Position(2, 13);
+            enemies.Add(enemy3);
+            #endregion
+
+            #region 아이템 추가
+            Item item1 = new Potion("빨간 포션", "체력을 회복합니다.", 35);
+            inventory.items.Add(item1);
+
+            Item item2 = new BattleItem("힘의 영약", "공격력이 상승합니다.", 5);
+            inventory.items.Add(item2);
+
+            #endregion
         }
         public Pokemon GetPokemonInPosition(Position position)
         {

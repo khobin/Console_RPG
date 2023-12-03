@@ -11,13 +11,12 @@ namespace Console_RPG
         public string Name { get; set; }
         public string Desc {  get; set; }
         public ItemType ItemType { get; set; }
-        public event Action<Item> OnUse;
+        private event Action<Item> OnUse;
 
-        public Item(string name, string desc, ItemType type)
+        public Item(string name, string desc)
         {
             Name = name;
             Desc = desc;
-            ItemType = type;
             OnUse -= Data.Instance.player.ItemUse;
             OnUse += Data.Instance.player.ItemUse;
         }
@@ -25,5 +24,11 @@ namespace Console_RPG
         {
             OnUse(this);
         }
+        public void ShowItem()
+        {
+            
+            Console.WriteLine($"이름 : {Name}  타입 : {ItemType}  설명 : {Desc}");
+        }
+
     }
 }

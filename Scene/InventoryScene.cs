@@ -46,8 +46,22 @@ namespace Console_RPG
                 return;
             }
             Console.WriteLine("사용할 아이템 인덱스 입력");
-            
-            //Data.Instance.inventory.items[command].Use();
+            string input = Console.ReadLine();
+            int command;
+            if (!int.TryParse(input, out command))
+            {
+                Console.WriteLine("잘못된 값 입력. .");
+                Thread.Sleep(1000);
+                return;
+            }
+            else if (command > Data.Instance.inventory.items.Count || command < 0)
+            {
+                Console.WriteLine("잘못된 값 입력. .");
+                Thread.Sleep(1000);
+                return;
+            }
+
+            Data.Instance.inventory.items[command].Use();
         }
     }
 }

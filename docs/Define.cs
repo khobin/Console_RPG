@@ -15,9 +15,9 @@ namespace Console_RPG
     }
     public enum ItemType
     {
-        볼 = 0,
-        배틀아이템 = 1,
-        기타 = 2,
+        강화,
+        포션,
+        기타
     }
     public enum SkillType
     {

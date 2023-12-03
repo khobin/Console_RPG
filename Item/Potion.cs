@@ -11,9 +11,12 @@ namespace Console_RPG
     {
         public int heal;
 
-        public Potion(string name, string desc, ItemType type, int heal) : base(name, desc, type)
+        public Potion(string name, string desc, int heal) : base(name, desc)
         {
+            ItemType = ItemType.포션;
             this.heal = heal;
         }
+
+
     }
 }

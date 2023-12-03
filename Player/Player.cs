@@ -44,25 +44,55 @@ namespace Console_RPG
         {
             switch (item.ItemType)
             {
-                case ItemType.볼:
-
-                    break;
-                case ItemType.배틀아이템:
+                case ItemType.강화:
                     BattleItem(item);
                     break;
+                case ItemType.포션:
+                    HealItem(item);
+                    break;
                 case ItemType.기타:
-                    
+                    Console.WriteLine("사용할 수 없는 아이템입니다.");
+                    Thread.Sleep(1000);
                     break;
 
             }
         }
         private void HealItem(Item item)
         {
+            Potion potion = item as Potion;
+            if (potion == null)
+            {
+                Console.WriteLine("Casting Error");
+                Thread.Sleep(1000);
+                return;
+            }
+
+            Console.WriteLine($"{potion.Name}을 {pokemon.Name}에게 사용합니다.");
+            Thread.Sleep(1000);
+            Console.WriteLine($"{potion.heal}만큼 회복합니다.");
+            Thread.Sleep(1000);
+            pokemon.stat.hp += potion.heal;
+
+            Data.Instance.inventory.items.Remove(item);
 
         }
         private void BattleItem(Item item)
         {
+            BattleItem battleItem = item as BattleItem;
+            if (battleItem == null)
+            {
+                Console.WriteLine("Casting Error");
+                Thread.Sleep(1000);
+                return;
+            }
 
+            Console.WriteLine($"{battleItem.Name}을 {pokemon.Name}에게 사용합니다.");
+            Thread.Sleep(1000);
+            Console.WriteLine($"{battleItem.increase}만큼 공격력이 상승합니다.");
+            Thread.Sleep(1000);
+            pokemon.stat.attack += battleItem.increase;
+
+            Data.Instance.inventory.items.Remove(item);
         }
     }
 }

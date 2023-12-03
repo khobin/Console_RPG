@@ -110,7 +110,7 @@ namespace Console_RPG
             switch (usingSkill.skillType)
             {
                 case SkillType.공격:
-                    Attack(enemy, usingSkill);
+                    //Attack(enemy, usingSkill);
                     enemy.TakeDamage(usingSkill.Amount);
                     break;
                 case SkillType.디버프:
@@ -141,7 +141,12 @@ namespace Console_RPG
                     // 불꽃일 때만 다르게
                     usingSkillType = 0b0100;
                     // 상대: 불 나 : 풀
-                    if(usingSkillType == type)                }
+                    if (usingSkillType == type)
+                    {
+
+                    }
+                        
+                }
                 else if(usingSkillType << 1 == type)
                 {
 

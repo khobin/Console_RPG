@@ -8,10 +8,10 @@ namespace Console_RPG
 {
     public class BattleItem : Item
     {
-        int increse;
-        public BattleItem(string name, string desc, ItemType type) : base(name, desc, type)
+        public int increase;
+        public BattleItem(string name, string desc, int increase) : base(name, desc)
         {
-
+            this.increase = increase;
         }
     }
 }
